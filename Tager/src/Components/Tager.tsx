@@ -5,8 +5,9 @@ import { useState } from "react";
 interface Props {
   tags: string[];
   setTags: (tags: string[]) => void;
+  onFilter: (tags: string[]) => void;
 }
-const Tager = ({ tags, setTags }: Props) => {
+const Tager = ({ tags, setTags, onFilter }: Props) => {
   const [inputValue, setInputValue] = useState("");
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -18,6 +19,7 @@ const Tager = ({ tags, setTags }: Props) => {
       if (!tags.includes(newTag)) {
         const updatedTags = [...tags, newTag];
         setTags(updatedTags);
+        onFilter(updatedTags);
       }
       setInputValue("");
     }
@@ -25,6 +27,7 @@ const Tager = ({ tags, setTags }: Props) => {
   const handleDelete = (tagToDelete: string) => () => {
     const updatedTags = tags.filter((tag) => tag !== tagToDelete);
     setTags(updatedTags);
+    onFilter(updatedTags);
   };
   return (
     <>
