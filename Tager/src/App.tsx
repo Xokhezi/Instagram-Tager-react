@@ -18,7 +18,7 @@ function App() {
       body: "Angular is a TypeScript-based free and open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations.",
     },
   ];
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState([] as string[]);
   const [articles, setArticles] = useState([...originalArticles]);
 
   const filterArticles = (tags: string[]) => {
